@@ -1,0 +1,44 @@
+name: 'CronetDart'
+description: 'Bindings to Cronet Dart API'
+output: 'lib/src/third_party/cronet_dart/generated_bindings.dart'
+headers:
+  entry-points:
+    - 'cpp/cronet_dart/cronet_dart_api.h'
+  include-directives:
+  - 'cpp/cronet_dart/cronet_dart_api.h'
+compiler-opts:
+  - '-Icpp/cronet_dart/'
+  - '-Icpp/third_party/dart/'
+  - '-I/Users/aam/Downloads/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/'
+  - '-DDART_SHARED_LIB'
+llvm-path:
+  - '/usr/lib/llvm-13/'
+  - '/Library/Developer/CommandLineTools/usr/'
+
+# Callbacks. ISSUE: https://github.com/dart-lang/sdk/issues/37022
+functions:
+  symbol-address:
+    include:
+      # Callbacks for receiving data.
+      - 'OnRedirectReceived'
+      - 'OnResponseStarted'
+      - 'OnReadCompleted'
+      - 'OnSucceeded'
+      - 'OnFailed'
+      - 'OnCanceled'
+      # Callbacks for sending data.
+      - 'UploadDataProvider_GetLength'
+      - 'UploadDataProvider_Read'
+      - 'UploadDataProvider_Rewind'
+      - 'UploadDataProvider_Close'
+comments:
+  style: any
+  length: full
+preamble: |
+  // Copyright (c) 2021, the Dart project authors.  Please see the AUTHORS file
+  // for details. All rights reserved. Use of this source code is governed by a
+  // BSD-style license that can be found in the LICENSE file.
+
+  // ignore_for_file: camel_case_types
+  // ignore_for_file: constant_identifier_names
+  // ignore_for_file: non_constant_identifier_names
