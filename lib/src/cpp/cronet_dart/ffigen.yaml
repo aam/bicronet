@@ -3,12 +3,14 @@ description: 'Bindings to Cronet Dart API'
 output: 'lib/src/third_party/cronet_dart/generated_bindings.dart'
 headers:
   entry-points:
-    - 'cpp/cronet_dart/cronet_dart_api.h'
+#    - 'cpp/cronet_dart/cronet_dart_api.h'
+    - 'cpp/cronet_dart/bicronet_dart_api.h'
   include-directives:
-  - 'cpp/cronet_dart/cronet_dart_api.h'
+  - 'cpp/cronet_dart/bicronet_dart_api.h'
 compiler-opts:
   - '-Icpp/cronet_dart/'
   - '-Icpp/third_party/dart/'
+  - '-Icpp/third_party/grpc_support/'
   - '-I/Users/aam/Downloads/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/'
   - '-DDART_SHARED_LIB'
 llvm-path:
