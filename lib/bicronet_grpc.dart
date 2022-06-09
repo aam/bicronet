@@ -1,0 +1,1 @@
+export 'src/bicronet_grpc.dart';
