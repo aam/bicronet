@@ -13,7 +13,8 @@ BC=${BC:-$HOME/p/bicronet}
 cd $CH
 ./components/cronet/tools/cr_cronet.py gn --out_dir=out/AndroidRelease --args="is_component_build=false is_debug=false is_official_build=true"
 ninja -C out/AndroidRelease cronet_package
-./components/cronet/tools/cr_cronet.py gn --out_dir=out/AndroidX86 --args="target_cpu="x86" is_component_build=false is_debug=true is_official_build=false" 
+./components/cronet/tools/cr_cronet.py gn --out_dir=out/AndroidX86 --args="is_component_build=false is_debug=true is_official_build=false"
+echo 'target_cpu="x86" ' >> out/AndroidX86/args.gn
 ninja -C out/AndroidX86 cronet_package
 ./components/cronet/tools/cr_cronet.py gn --out_dir=out/AndroidARM64 --args='is_component_build=false is_debug=true is_official_build=false'
 echo 'target_cpu = "arm64"' >> out/AndroidARM64/args.gn
@@ -35,3 +36,6 @@ $DH/out/ReleaseX64/dart-sdk/bin/dart run ffigen --config lib/src/cpp/cronet/ffig
 cmake --build $BC/.dart_tool/out 
 
 ~/p/d/dart-sdk1/sdk/out/ReleaseX64/dart-sdk/bin/dart test/bicronet_grpc_test.dart
+
+cd android
+$BC/android/gradlew build
