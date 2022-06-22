@@ -17,15 +17,15 @@ ninja -C out/AndroidRelease cronet_package
 ninja -C out/AndroidX86 cronet_package
 ./components/cronet/tools/cr_cronet.py gn --out_dir=out/AndroidARM64 --args='is_component_build=false is_debug=true is_official_build=false'
 echo 'target_cpu = "arm64"' >> out/AndroidARM64/args.gn
-ninja -C out/Android64 cronet_package
+ninja -C out/AndroidARM64 cronet_package
 gn gen out/Debug --args='use_goma=true is_component_build=false is_debug=true is_official_build=false'
 ninja -C out/Debug cronet_package
 
 mkdir -p $BC/.dart_tool/out
-cp $CH/out/AndroidRelease/libcronet.103.0.5019.0.so $BC/cpp/libs/armeabi-v7a/libcronet.102.0.4973.2.so
-cp $CH/out/AndroidX86/libcronet.103.0.5019.0.so $BC/cpp/libs/x86/libcronet.102.0.4973.2.so
-cp $CH/out/Android64/libcronet.103.0.5019.0.so $BC/cpp/libs/arm64-v8a/libcronet.102.0.4973.2.so
-cp $CH/out/Debug/libcronet.103.0.5019.0.so $BC/.dart_tool/out/libcronet.102.0.4973.2.so
+cp $CH/out/AndroidRelease/libcronet.*.so $BC/cpp/libs/armeabi-v7a/
+cp $CH/out/AndroidX86/libcronet.*.so $BC/cpp/libs/x86/
+cp $CH/out/AndroidARM64/libcronet.*.so $BC/cpp/libs/arm64-v8a/
+cp $CH/out/Debug/libcronet.*.so $BC/.dart_tool/out/
 
 cd $BC 
 cmake cpp/cronet_dart/CMakeLists.txt -B $BC/.dart_tool/out -DCMAKE_BUILD_TYPE=Release 

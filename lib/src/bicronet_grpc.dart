@@ -35,7 +35,7 @@ class BicronetEngine {
   BicronetEngine(this._options) {
     final extension = Platform.isMacOS ? "dylib" : "so";
     ffilibGrpcSupport = grpc_support.GrpcSupport(ffi.DynamicLibrary.open(
-        '.dart_tool/out/libcronet.102.0.4973.2.${extension}'));
+        '.dart_tool/out/libcronet.104.0.5108.0.${extension}'));
     ffilibCronetDart = CronetDart(ffi.DynamicLibrary.open(
         '.dart_tool/out/libcronet_dart.${extension}'));
     ffilibCronetDart.InitDartApiDL(ffi.NativeApi.initializeApiDLData);
